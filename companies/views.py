@@ -4,6 +4,10 @@ from __future__ import unicode_literals
 from django.http import JsonResponse
 from django.shortcuts import render
 
+from rest_framework import generics
+
+from .serializers import CompanySerializer
+
 from .models import Company
 
 
@@ -47,6 +51,11 @@ def company_stats_api_view(request):
         ]
     }
     return JsonResponse(response)
+
+
+class CompanyList(generics.ListCreateAPIView):
+   queryset = Company.objects.all()
+   serializer_class = CompanySerializer
 
 
 def company_stats_view(request):
