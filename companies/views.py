@@ -57,6 +57,11 @@ class CompanyList(generics.ListCreateAPIView):
    queryset = Company.objects.all()
    serializer_class = CompanySerializer
 
+class CompanyRetrieve(generics.RetrieveAPIView):
+   queryset = Company.objects.all()
+   serializer_class = CompanySerializer
+   lookup_field = 'id'
+
 
 def company_stats_view(request):
     return render(request, 'companies/company_stats.html')
