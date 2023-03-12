@@ -8,15 +8,79 @@
     <title>Company Stats</title>
 </head>
 <body>
-    <div>
-        <dl>
-            <dt>Most recently founded:</dt>
-            <dd id="most-recently-founded"></dd>
-        </dl>
-        <dl>
-            <dt>Average employee count:</dt>
-            <dd id="average-employee-count"></dd>
-        </dl>
+    <div class="tables">
+        <table class="table recently-founded-table">
+            <thead>
+                <th>Most recently founded</th>
+            </tbody>
+            <tbody id="most-recently-founded">
+
+            </tbody>
+        </table>
+
+        <table class="table avg-deal-amount-table">
+            <thead>
+                <tr>
+                    <th colspan="3">Average deal amount by country</th>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <th>Avg.</th>
+                </tr>
+            </thead>
+            <tbody id="avg-deal-by-country">
+
+            </tbody>
+        </table>
+
+        <table class="table founded-by-quarter-table">
+            <thead>
+                <tr>
+                    <th colspan="3">Companies founded per quarter</th>
+                </tr>
+                <tr>
+                    <th>Year</th>
+                    <th>Quarter</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody id="founded-per-quarter">
+
+            </tbody>
+        </table>
+
+        <table class="table employee-count-table">
+            <thead>
+                <th>Average employee count</th>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td id="average-employee-count"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table user-most-companies-table">
+            <thead>
+                <th>User that created most companies</th>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td id="user-with-most-companies"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table user-most-employees-table">
+            <thead>
+                <th>User with the greatest total number of employees of companies created</th>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td id="user-with-most-employees"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
