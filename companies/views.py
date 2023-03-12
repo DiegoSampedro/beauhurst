@@ -61,12 +61,9 @@ class CompanyRetrieve(generics.RetrieveAPIView):
 @permission_classes([IsAuthenticated])
 def my_companies(request):
     user_id = request.user.id
-    try:
-        companies = Company.objects.filter(monitors=user_id)
-        serializer = CompanySerializer(companies, many=True)
-        return Response(serializer.data)
-    except Company.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    companies = Company.objects.filter(monitors=user_id)
+    serializer = CompanySerializer(companies, many=True)
+    return Response(serializer.data)
 
 
 def company_stats_view(request):
