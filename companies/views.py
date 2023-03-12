@@ -14,21 +14,13 @@ from .serializers import CompanySerializer
 
 
 def most_recently_founded_companies(limit=10):
-    companies = []
-    for comp in Company.objects.all():
-        serialized = {
-            'companies_house_id': comp.companies_house_id,
-            'name': comp.name,
-            'description': comp.description,
-            'date_founded': comp.date_founded,
-            'country__iso_code': comp.country.iso_code,
-            'creator__username': comp.creator.username,
-        }
-        companies.append(serialized)
+    companies = Company.objects.all()
+    serializer = CompanySerializer(companies, many=True)
 
     if limit:
         companies = companies[:limit]
-    return sorted(companies, key=lambda comp: comp['date_founded'])
+
+    return sorted(serializer.data, key=lambda comp: comp['date_founded'])
 
 
 def company_stats_api_view(request):
