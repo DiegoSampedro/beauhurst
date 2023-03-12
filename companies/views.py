@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
-
 from rest_framework import generics
-
-from .serializers import CompanySerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from .models import Company
+from .serializers import CompanySerializer
 
 
 def most_recently_founded_companies(limit=10):
@@ -61,6 +62,16 @@ class CompanyRetrieve(generics.RetrieveAPIView):
    queryset = Company.objects.all()
    serializer_class = CompanySerializer
    lookup_field = 'id'
+
+
+@api_view(['GET'])
+def user_companies(request, user_id):
+    try:
+        companies = Company.objects.filter(monitors=user_id)
+        serializer = CompanySerializer(companies, many=True)
+        return Response(serializer.data)
+    except Company.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
 
 def company_stats_view(request):
