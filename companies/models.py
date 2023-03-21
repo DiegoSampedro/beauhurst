@@ -5,6 +5,8 @@ from django.conf import settings
 from django.db import models
 from model_utils.models import TimeStampedModel
 
+from .model_managers import CompanyManager, DealManager, EmployeeManager
+
 
 class Country(models.Model):
     iso_code = models.CharField(max_length=3, unique=True)
@@ -33,6 +35,8 @@ class Company(TimeStampedModel):
         help_text='Users who want to be notified of updates to this company'
     )
 
+    companies = CompanyManager()
+
     def __unicode__(self):
         return u'{0}'.format(self.name)
 
@@ -41,6 +45,8 @@ class Deal(TimeStampedModel):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     date_of_deal = models.DateField()
     amount_raised = models.FloatField()
+
+    deals = DealManager()
 
     def __unicode__(self):
         return u'{0} raised by {1} ({2})'.format(
@@ -64,6 +70,8 @@ class Employee(TimeStampedModel):
 
     email = models.EmailField()
     phone_number = models.CharField(max_length=20, blank=True)
+
+    employees = EmployeeManager()
 
     class Meta:
         unique_together = ('company', 'email')

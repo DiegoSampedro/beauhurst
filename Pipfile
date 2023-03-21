@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==3.2.5"
+django-model-utils = "==4.1.1"
+ipython = "==7.25.0"
+pytest = "==6.2.4"
+pytest-django = "==4.4.0"
+factory-boy = "==3.2.0"
+djangorestframework = "*"
+
+[dev-packages]
+autopep8 = "*"
+
+[requires]
+python_version = "3.9"

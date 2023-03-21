@@ -20,11 +20,12 @@ def company_stats_api_view(request):
 
 
 class CompanyList(generics.ListCreateAPIView):
-   queryset = Company.objects.all()
+   queryset = Company.companies.all()
    serializer_class = CompanySerializer
+   
 
 class CompanyRetrieve(generics.RetrieveAPIView):
-   queryset = Company.objects.all()
+   queryset = Company.companies.all()
    serializer_class = CompanySerializer
    lookup_field = 'id'
 
@@ -33,7 +34,7 @@ class CompanyRetrieve(generics.RetrieveAPIView):
 @permission_classes([IsAuthenticated])
 def my_companies(request):
     user_id = request.user.id
-    companies = Company.objects.filter(monitors=user_id)
+    companies = Company.companies.filter(monitors=user_id)
     serializer = CompanySerializer(companies, many=True)
     return Response(serializer.data)
 
